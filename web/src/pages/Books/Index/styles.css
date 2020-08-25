@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.books-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 2%;
+  border: 1px solid;
+  border-radius: 0.8%; 
+  background: #00b4e6; 
+}
+
+.books-container header {
+  width:100%;
+  text-align:center;
+}
+
+.books-container header img {
+  display:inline-block;
+  margin: 0 auto;
+}
+
+.books-container h1 {
+  font: 400 30px Roboto, sans-serif;
+  text-align: center;
+}
+
+.books-container ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 24px;
+  list-style: none;
+}
+
+.books-container ul li {
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.books-container ul li button {
+  cursor: pointer;
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  border: 0;
+  background-color: #fff;
+}
+
+.books-container ul li button:hover {
+  opacity: 0.8s;
+}
+
+.books-container ul li strong {
+  display: block;
+  margin-bottom: 16px;
+  color: #41414d;
+}
+
+.books-container ul li p + strong {
+  margin-top: 32px;
+}
+
+.books-container ul li p {
+  color: #737380;
+  line-height: 21px;
+  font-size: 16px;
+}
