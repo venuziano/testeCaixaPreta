@@ -2,17 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { FaEdit } from 'react-icons/fa'
 
 import api from '../../../services/api';
+import ModalBook from '../Update/UpdateBook'
 
 import './styles.css'
 
 function IndexBooks() {
   const [books, setBooks] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [bookToEdit, setBookToUpdate] = useState([]);
 
-  //o token enviado pelo header da página de login vem aqui
+  //token enviado pelo header ou localStorage da página de login vem aqui
   const token = '';
 
-  async function handleIndexBooks() {
-
+  function handleSetBookToUpdate(e) {
+    setBookToUpdate(e);
   }
 
   useEffect(() => {
@@ -23,6 +26,7 @@ function IndexBooks() {
         }
       }).then(response => {
         setBooks(response.data);
+        setIsModalVisible(false);
       });
 
     } catch (error) {
@@ -31,10 +35,10 @@ function IndexBooks() {
   }, [])
 
   return (
-    <div className="books-container"> 
+    <div className="books-container">
       <header>
         <img src="https://static.wixstatic.com/media/395950_f9da88d642584fefa780f64ba768934e~mv2.png/v1/fill/w_366,h_61,al_c,q_85,usm_0.66_1.00_0.01/395950_f9da88d642584fefa780f64ba768934e~mv2.webp" alt="logo" />
-        
+
       </header>
 
       <h1>Lista de Livros:</h1>
@@ -48,14 +52,30 @@ function IndexBooks() {
             <strong>ANO:</strong>
             <p>{book.year}</p>
 
-            <button type="button">
+            <button
+              type="button"
+              onClick={() => {
+                setIsModalVisible(true);
+                handleSetBookToUpdate(book);
+              }}>
+
               <FaEdit size={20} color="#00000" />
             </button>
           </li>
         ))}
       </ul>
-    </div>
 
+      {isModalVisible ? (
+        <ModalBook
+          id={bookToEdit._id}
+          name={bookToEdit.name}
+          year={bookToEdit.year}
+          onClose={() => setIsModalVisible(false)}
+        >
+
+        </ModalBook>
+      ) : null}
+    </div>
   );
 }
 
