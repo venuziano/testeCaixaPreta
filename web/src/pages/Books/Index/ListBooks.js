@@ -18,9 +18,9 @@ function IndexBooks() {
     setBookToUpdate(e);
   }
 
-  useEffect(() => {
+  async function handleGetListBooks() {
     try {
-      api.get('/books', {
+      await api.get('/books', {
         headers: {
           Authorization: token,
         }
@@ -32,6 +32,10 @@ function IndexBooks() {
     } catch (error) {
       alert('Não foi possível carregar a lista, tente novamente.')
     }
+  }
+
+  useEffect(() => {
+    handleGetListBooks();
   }, [])
 
   return (

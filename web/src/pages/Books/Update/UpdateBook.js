@@ -18,7 +18,7 @@ const UpdateBooks = ({ id, name, year, onClose = () => {}, modal = 'modal' }) =>
   useEffect(() => {
     setTitle(name);
     setYearBook(year);
-  }, [year])
+  }, [name, year])
 
   async function handleUpdateBook(e) {
 
